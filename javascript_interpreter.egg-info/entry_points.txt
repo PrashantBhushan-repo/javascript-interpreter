@@ -1,0 +1,2 @@
+[console_scripts]
+js-interpreter = javascript_interpreter.main:main

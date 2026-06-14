@@ -1,0 +1,164 @@
+Metadata-Version: 2.4
+Name: javascript-interpreter
+Version: 0.1.0
+Summary: A lightweight JavaScript interpreter implemented in Python.
+Author-email: Prashant Bhushan <prashant.bhushan.tech@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/PrashantBhushan-repo/javascript-interpreter
+Project-URL: Source, https://github.com/PrashantBhushan-repo/javascript-interpreter
+Project-URL: Tracker, https://github.com/PrashantBhushan-repo/javascript-interpreter/issues
+Keywords: javascript,interpreter,parser,ast,repl
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# JavaScript Interpreter
+
+A lightweight JavaScript interpreter implemented in Python.
+
+This project reads JavaScript-style source code, turns it into tokens, builds an Abstract Syntax Tree (AST), and evaluates that AST step by step inside a runtime environment.
+
+## What This Interpreter Does
+
+- Parses JavaScript-like source code
+- Evaluates expressions, variables, and function calls
+- Supports control flow: `if`, `while`, `do...while`, `for`, `break`, `continue`, `return`
+- Supports `let`, `const`, and `var` declarations
+- Handles arrays, objects, string values, numbers, booleans, `null`, and `undefined`
+- Provides built-in APIs: `console.log`, `Math`, and `Date`
+- Offers an interactive REPL with debug helpers
+
+## How It Works: Input to Output
+
+1. Source code is loaded from a file or typed into the REPL.
+2. `lexer.py` reads the characters and converts them into a stream of tokens.
+   - Example token types: `IDENTIFIER`, `NUMBER`, `STRING`, `PLUS`, `LPAREN`, `SEMICOLON`
+3. `parser.py` uses a Pratt parser to convert tokens into an AST.
+   - The AST is a tree structure representing the program.
+   - Example nodes: `Program`, `VariableStatement`, `InfixExpression`, `FunctionDeclaration`, `CallExpression`
+4. `evaluator.py` walks the AST and executes each node.
+   - Expressions are evaluated, statements are executed, and values are returned.
+   - A runtime environment keeps track of variables, scopes, and functions.
+5. `environment.py` manages scope chains and variable lookup.
+   - Global scope is created first, then nested scopes are built for blocks and functions.
+6. Output is printed to the console, either from `console.log` or the REPL response.
+
+### Example: `let x = 10; console.log(x + 5);`
+
+- Lexer converts source into tokens: `LET`, `IDENTIFIER(x)`, `ASSIGN`, `NUMBER(10)`, `SEMICOLON`, ...
+- Parser builds an AST representing a variable declaration and a call to `console.log`
+- Evaluator declares `x` and computes `x + 5`
+- `console.log` prints `15` to stdout
+
+## Requirements
+
+- Python 3.8 or newer
+
+## Run the Interpreter
+
+### Start the REPL
+
+```bash
+python main.py
+```
+
+Once running, type JavaScript expressions and statements directly.
+
+### Run a JavaScript File
+
+```bash
+python main.py test.js
+```
+
+## REPL Example
+
+```text
+$ python main.py
+   ___       _   _                    _ _
+  / _ \_ __ | |_(_) __ _ _ __ __ ___ (_) |_ _   _
+ / /_\/ '_ \| __| |/ _` | '__/ _` \ \ / / __| | | |
+/ /_\\| |_) | |_| | (_| | | | (_| |\ V /| |_| |_| |
+\____/| .__/ \__|_|\__, |_|  \__,_| \_/  \__|\__, |
+      |_|          |___/                     |___/
+  JavaScript Interpreter (Python implementation)
+  Type code to evaluate. Commands:
+    .exit / .quit : Exit the shell
+    .tokens     : Toggle token stream visualization
+    .ast        : Toggle AST tree visualization
+    .env        : Print active global scope bindings
+
+js> let x = 5;
+js> let y = 7;
+js> function add(a, b) { return a + b; }
+js> console.log(add(x, y));
+12
+js> .env
+--- Active Scope Bindings ---
+  this : [object Object]
+  console : [object Object]
+  Math : [object Object]
+  Date : [object Function]
+  x : 5
+  y : 7
+---
+js> .exit
+Goodbye!
+```
+
+## Example JavaScript File
+
+Create `test.js` with:
+
+```js
+let greeting = "Hello";
+let name = "World";
+
+function joinWords(a, b) {
+  return a + ", " + b + "!";
+}
+
+console.log(joinWords(greeting, name));
+```
+
+Run it:
+
+```bash
+python main.py test.js
+```
+
+Expected output:
+
+```text
+Hello, World!
+```
+
+## REPL Debug Helpers
+
+- `.tokens` — show the current input as a token stream
+- `.ast` — show the current input parsed into an AST tree
+- `.env` — show global scope bindings and values
+
+## Project Files
+
+- `main.py` — entry point for REPL or file execution
+- `repl.py` — interactive shell and helper commands
+- `lexer.py` — tokenizes the source text
+- `parser.py` — builds the AST using Pratt parsing
+- `ast_nodes.py` — AST node definitions and syntax structures
+- `evaluator.py` — executes the AST and manages runtime semantics
+- `environment.py` — scope chain and variable lookup logic
+- `values.py` — JavaScript value wrappers, coercion, and object models
+- `test_interpreter.py` — interpreter test cases
+- `test.js` — sample JavaScript script
+
+## Notes & Limitations
+
+- This interpreter is a learning implementation, not a full JavaScript engine.
+- It does not implement the full ECMAScript standard.
+- Some JavaScript edge cases and built-in APIs are simplified or missing.
+- Use it to explore parsing, AST evaluation, and interpreter design.

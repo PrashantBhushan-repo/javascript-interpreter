@@ -1,8 +1,8 @@
 # parser.py
 
-import tokens
-from tokens import Token
-import ast_nodes
+import javascript_interpreter.tokens as tokens
+from javascript_interpreter.tokens import Token
+import javascript_interpreter.ast_nodes as ast_nodes
 
 # Precedence levels
 LOWEST = 1

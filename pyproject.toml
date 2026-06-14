@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "javascript-interpreter"
+version = "0.1.0"
+description = "A lightweight JavaScript interpreter implemented in Python."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+  { name = "Prashant Bhushan", email = "prashant.bhushan.tech@gmail.com" }
+]
+keywords = ["javascript", "interpreter", "parser", "ast", "repl"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/PrashantBhushan-repo/javascript-interpreter"
+Source = "https://github.com/PrashantBhushan-repo/javascript-interpreter"
+Tracker = "https://github.com/PrashantBhushan-repo/javascript-interpreter/issues"
+
+[project.scripts]
+js-interpreter = "javascript_interpreter.main:main"
+
+[tool.setuptools]
+packages = ["javascript_interpreter"]

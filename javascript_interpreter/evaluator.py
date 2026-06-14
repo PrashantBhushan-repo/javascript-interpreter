@@ -1,8 +1,8 @@
 # evaluator.py
 
-import ast_nodes
-import values
-from environment import Environment
+import javascript_interpreter.ast_nodes as ast_nodes
+import javascript_interpreter.values as values
+from javascript_interpreter.environment import Environment
 import math
 import random
 from datetime import datetime

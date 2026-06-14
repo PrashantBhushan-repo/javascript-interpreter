@@ -2,10 +2,10 @@
 
 import sys
 import os
-from lexer import Lexer
-from parser import Parser
-from evaluator import Evaluator
-from repl import start_repl
+from .lexer import Lexer
+from .parser import Parser
+from .evaluator import Evaluator
+from .repl import start_repl
 
 def run_file(filepath: str):
     if not os.path.exists(filepath):

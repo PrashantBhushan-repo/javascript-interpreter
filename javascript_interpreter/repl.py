@@ -1,12 +1,12 @@
 # repl.py
 
 import sys
-import tokens
-from lexer import Lexer
-from parser import Parser
-from evaluator import Evaluator
-import ast_nodes
-import values
+from . import tokens
+from .lexer import Lexer
+from .parser import Parser
+from .evaluator import Evaluator
+from . import ast_nodes
+from . import values
 
 # ANSI Color Codes
 CYAN = "\033[36m"

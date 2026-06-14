@@ -1,7 +1,7 @@
 # lexer.py
 
-from tokens import Token, lookup_identifier
-import tokens
+from javascript_interpreter.tokens import Token, lookup_identifier
+import javascript_interpreter.tokens as tokens
 
 class Lexer:
     def __init__(self, input_str: str):

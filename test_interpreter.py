@@ -2,10 +2,10 @@
 
 import unittest
 import math
-from lexer import Lexer
-from parser import Parser
-from evaluator import Evaluator
-import values
+from javascript_interpreter.lexer import Lexer
+from javascript_interpreter.parser import Parser
+from javascript_interpreter.evaluator import Evaluator
+import javascript_interpreter.values as values
 
 class TestJSInterpreter(unittest.TestCase):
     def eval_js(self, source: str):
